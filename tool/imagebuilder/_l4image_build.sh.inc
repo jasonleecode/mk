@@ -11,11 +11,12 @@ L4IMAGE="${OBJ_BASE}/source/tool/bin/l4image"
 MAKECONF="${OBJ_BASE}/source/tool/bin/makeconf"
 
 # Sets MAKECONF_{ARCH|CPU|...}
-source <("$MAKECONF" "$OBJ_BASE" \
+# Use eval instead of 'source <(...)' for compatibility with bash 3.2 (macOS)
+eval "$("$MAKECONF" "$OBJ_BASE" \
                      ARCH CPU \
                      OBJCOPY \
                      QEMU_PATH QEMU_OPTIONS \
-                     MODULE_SEARCH_PATH BUILDDIR_SEARCHPATH)
+                     MODULE_SEARCH_PATH BUILDDIR_SEARCHPATH)"
 
 # Detect selected system
 : ${ARCH:=${MAKECONF_ARCH}}
