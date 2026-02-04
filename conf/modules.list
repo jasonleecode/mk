@@ -207,3 +207,35 @@ module ipcbench_parallel
 module syscallbench
 module syscallbench_parallel
 module ned/ipcbench/ipcbench.cfg
+
+# TuringOS 自定义入口
+entry fiasco-base-test
+roottask moe --init=rom/hello
+module l4re
+module hello
+
+entry shell
+roottask moe rom/shell.cfg
+module l4re
+module[fname=ned] lua
+module shell.cfg
+module hello
+
+entry simple-test
+roottask moe rom/simple-shell.cfg
+module l4re
+module[fname=ned] lua
+module simple-shell.cfg
+module hello
+
+entry demo
+roottask moe rom/demo.cfg
+module l4re
+module[fname=ned] lua
+module demo.cfg
+module hello
+
+entry native-shell
+roottask moe --init=rom/native_shell
+module l4re
+module native_shell
