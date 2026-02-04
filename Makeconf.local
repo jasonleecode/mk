@@ -39,5 +39,14 @@ ifneq ($(patsubst $(_PRJ)/pkg/drivers/%,,$(CURDIR)),$(CURDIR))
   PKGDIR_OBJ := $(abspath $(OBJ_DIR)/$(PKGDIR))
 endif
 
+# pkg/library/<pkg>/ → l4mk/pkg/library/<pkg>/
+ifneq ($(patsubst $(_PRJ)/pkg/library/%,,$(CURDIR)),$(CURDIR))
+  _REL := $(patsubst $(_PRJ)/pkg/library/%,%,$(CURDIR))
+  SRC_DIR    := $(_L4_ABS)/pkg/library/$(_REL)
+  PKGDIR_ABS := $(abspath $(SRC_DIR)/$(PKGDIR))
+  OBJ_DIR    := $(OBJ_BASE)/pkg/library/$(_REL)
+  PKGDIR_OBJ := $(abspath $(OBJ_DIR)/$(PKGDIR))
+endif
+
 endif
 endif
