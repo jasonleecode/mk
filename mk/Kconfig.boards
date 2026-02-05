@@ -1,0 +1,132 @@
+# Board-specific configuration
+# This file defines target board types and automatically configures
+# architecture, CPU type, and build variants accordingly.
+
+menu "Target Board Configuration"
+
+choice
+	prompt "Target Board Type"
+	default BOARD_GENERIC
+	help
+	  Select the target board type. This will automatically configure
+	  the appropriate architecture, CPU variant, and build options.
+
+config BOARD_GENERIC
+	bool "Generic (Manual Configuration)"
+	help
+	  Generic board configuration. You will manually select the
+	  architecture and CPU type in the Architecture menu.
+
+config BOARD_BBB
+	bool "BeagleBone Black (AM335x)"
+	depends on BUILD_ARCH_arm
+	select CPU_ARM_ARMV7A if BUILD_ARCH_arm
+	help
+	  TI BeagleBone Black board with AM335x (ARM Cortex-A8).
+	  This board has VFPv3 and NEON FPU support.
+	  Architecture: ARMv7-A
+	  CPU: Cortex-A8 (1GHz)
+	  FPU: VFPv3 + NEON
+
+config BOARD_RPI2
+	bool "Raspberry Pi 2 Model B"
+	depends on BUILD_ARCH_arm
+	select CPU_ARM_ARMV7A if BUILD_ARCH_arm
+	help
+	  Raspberry Pi 2 Model B with BCM2836 (ARM Cortex-A7).
+	  This board has VFPv4 and NEON FPU support.
+	  Architecture: ARMv7-A
+	  CPU: Cortex-A7 (900MHz quad-core)
+	  FPU: VFPv4 + NEON
+
+config BOARD_RPI3
+	bool "Raspberry Pi 3 Model B/B+"
+	depends on BUILD_ARCH_arm64 || BUILD_ARCH_arm
+	help
+	  Raspberry Pi 3 Model B/B+ with BCM2837 (ARM Cortex-A53).
+	  Can run in both AArch64 and AArch32 modes.
+	  Architecture: ARMv8-A (64-bit or 32-bit mode)
+	  CPU: Cortex-A53 (1.2GHz quad-core)
+	  FPU: Built-in FPU and NEON
+
+config BOARD_VIRT_ARM
+	bool "QEMU ARM Virtual Machine (virt)"
+	depends on BUILD_ARCH_arm
+	select CPU_ARM_ARMV7A if BUILD_ARCH_arm
+	help
+	  QEMU ARM virtual machine (virt platform).
+	  Configurable CPU, typically Cortex-A15 with VFPv4.
+	  Architecture: ARMv7-A
+	  FPU: Configurable (usually with FPU)
+
+config BOARD_VIRT_ARM64
+	bool "QEMU AArch64 Virtual Machine (virt)"
+	depends on BUILD_ARCH_arm64
+	help
+	  QEMU AArch64 virtual machine (virt platform).
+	  Architecture: ARMv8-A (64-bit)
+	  FPU: Built-in FPU
+
+config BOARD_IMX6
+	bool "i.MX6 (Cortex-A9)"
+	depends on BUILD_ARCH_arm
+	select CPU_ARM_ARMV7A if BUILD_ARCH_arm
+	help
+	  Freescale/NXP i.MX6 series (ARM Cortex-A9).
+	  This board has VFPv3 and NEON FPU support.
+	  Architecture: ARMv7-A
+	  CPU: Cortex-A9
+	  FPU: VFPv3 + NEON
+
+config BOARD_ZYNQ
+	bool "Xilinx Zynq-7000 (Cortex-A9)"
+	depends on BUILD_ARCH_arm
+	select CPU_ARM_ARMV7A if BUILD_ARCH_arm
+	help
+	  Xilinx Zynq-7000 series (ARM Cortex-A9 + FPGA).
+	  This board has VFPv3 and NEON FPU support.
+	  Architecture: ARMv7-A
+	  CPU: Cortex-A9 (dual-core)
+	  FPU: VFPv3 + NEON
+
+endchoice
+
+config BOARD_TYPE
+	string
+	default "generic"     if BOARD_GENERIC
+	default "bbb"         if BOARD_BBB
+	default "rpi2"        if BOARD_RPI2
+	default "rpi3"        if BOARD_RPI3
+	default "virt-arm"    if BOARD_VIRT_ARM
+	default "virt-arm64"  if BOARD_VIRT_ARM64
+	default "imx6"        if BOARD_IMX6
+	default "zynq"        if BOARD_ZYNQ
+
+# FPU configuration based on board type
+config BOARD_HAS_FPU
+	bool
+	default y if BOARD_BBB
+	default y if BOARD_RPI2
+	default y if BOARD_RPI3
+	default y if BOARD_VIRT_ARM
+	default y if BOARD_VIRT_ARM64
+	default y if BOARD_IMX6
+	default y if BOARD_ZYNQ
+	default y if BOARD_GENERIC
+	help
+	  Indicates whether the target board has FPU support.
+	  When disabled, nofpu variants will be built.
+
+config BOARD_ENABLE_NOFPU_VARIANT
+	bool "Build no-FPU variants"
+	default n if BOARD_HAS_FPU
+	default y if !BOARD_HAS_FPU
+	help
+	  Enable building no-FPU variants of libraries and applications.
+	  This is automatically enabled for boards without FPU support,
+	  and disabled for boards with FPU.
+
+	  You can manually override this if you want to build both
+	  FPU and no-FPU variants for testing purposes.
+
+endmenu
