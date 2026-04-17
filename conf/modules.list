@@ -239,3 +239,23 @@ entry native-shell
 roottask moe --init=rom/native_shell
 module l4re
 module native_shell
+
+entry native-shell-rtc
+roottask moe rom/native-shell-rtc.cfg
+module l4re
+module ned
+module native-shell-rtc.cfg
+module virt-rtc.io
+module io
+module rtc
+module native_shell
+module libreadline.so
+
+entry tcp-server
+roottask moe rom/tcp-server.cfg
+module l4re
+module ned
+module tcp-server.cfg
+module virt-net.io
+module io
+module tcp_server
