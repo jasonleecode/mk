@@ -232,12 +232,3 @@ module io
 module rtc
 module native_shell
 module libreadline.so
-
-entry tcp-server
-roottask moe rom/tcp-server.cfg
-module l4re
-module ned
-module tcp-server.cfg
-module virt-net.io
-module io
-module tcp_server
