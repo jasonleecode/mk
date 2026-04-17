@@ -215,20 +215,6 @@ roottask moe --init=rom/hello
 module l4re
 module hello
 
-entry shell
-roottask moe rom/shell.cfg
-module l4re
-module[fname=ned] lua
-module shell.cfg
-module hello
-
-entry simple-test
-roottask moe rom/simple-shell.cfg
-module l4re
-module[fname=ned] lua
-module simple-shell.cfg
-module hello
-
 entry demo
 roottask moe rom/demo.cfg
 module l4re
@@ -237,15 +223,10 @@ module demo.cfg
 module hello
 
 entry native-shell
-roottask moe --init=rom/native_shell
-module l4re
-module native_shell
-
-entry native-shell-rtc
-roottask moe rom/native-shell-rtc.cfg
+roottask moe rom/native-shell.cfg
 module l4re
 module ned
-module native-shell-rtc.cfg
+module native-shell.cfg
 module virt-rtc.io
 module io
 module rtc
