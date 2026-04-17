@@ -57,6 +57,7 @@ modaddr 0x01100000
 
 default-kernel fiasco -serial_esc
 default-bootstrap bootstrap
+default-entry native-shell
 
 entry hello
 roottask moe --init=rom/hello
