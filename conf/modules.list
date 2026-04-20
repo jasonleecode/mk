@@ -239,3 +239,12 @@ module l4re
 module ned
 module fb-test.cfg
 module fb-test
+
+entry fb-drv
+roottask moe rom/fb-drv.cfg
+module l4re
+module ned
+module fb-drv.cfg
+module fb-drv
+module fb-test
+
