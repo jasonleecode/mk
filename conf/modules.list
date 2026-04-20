@@ -248,3 +248,10 @@ module fb-drv.cfg
 module fb-drv
 module fb-test
 
+
+entry wamr
+roottask moe rom/wamr.cfg
+module l4re
+module ned
+module wamr.cfg
+module wamr-example
