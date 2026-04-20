@@ -232,3 +232,10 @@ module io
 module rtc
 module native_shell
 module libreadline.so
+
+entry fb-test
+roottask moe rom/fb-test.cfg
+module l4re
+module ned
+module fb-test.cfg
+module fb-test
