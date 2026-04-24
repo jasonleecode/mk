@@ -232,6 +232,7 @@ module io
 module rtc
 module native_shell
 module libreadline.so
+module hello
 
 entry fb-test
 roottask moe rom/fb-test.cfg
@@ -255,3 +256,36 @@ module l4re
 module ned
 module wamr.cfg
 module wamr-example
+
+entry smp-test
+roottask moe rom/smp-test.cfg
+module l4re
+module ned
+module smp-test.cfg
+module smp-test
+
+entry virt-blk
+kernel fiasco -serial_esc
+module sigma0
+roottask moe rom/virt-blk.cfg
+module l4re
+module ned
+module virt-blk.cfg
+module virt-blk.io
+module io
+module virtio-block-driver
+module ext4fs
+
+entry virt-blk-shell
+kernel fiasco -serial_esc
+module sigma0
+roottask moe rom/virt-blk-shell.cfg
+module l4re
+module ned
+module virt-blk-shell.cfg
+module virt-blk.io
+module io
+module virtio-block-driver
+module ext4fs
+module native_shell
+module libreadline.so
