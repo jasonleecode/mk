@@ -236,6 +236,16 @@ module native_shell
 module libreadline.so
 module hello
 
+entry uart-test
+roottask moe rom/uart-test.cfg
+module l4re
+module ned
+module uart-test.cfg
+module virt-serial.io
+module io
+module virtio-serial
+module uart-test
+
 entry fb-test
 roottask moe rom/fb-test.cfg
 module l4re
