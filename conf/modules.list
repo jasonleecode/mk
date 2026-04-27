@@ -234,6 +234,7 @@ module virtio-block-driver
 module ext4fs
 module native_shell
 module libreadline.so
+module hello
 
 entry fb-test
 roottask moe rom/fb-test.cfg
