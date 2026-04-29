@@ -232,9 +232,9 @@ module io
 module rtc
 module virtio-block-driver
 module ext4fs
+module fb-drv
 module native_shell
 module libreadline.so
-module hello
 
 entry uart-test
 roottask moe rom/uart-test.cfg
@@ -276,3 +276,11 @@ module ned
 module smp-test.cfg
 module smp-test
 
+
+entry lvgl-demo
+roottask moe rom/lvgl-demo.cfg
+module l4re
+module ned
+module lvgl-demo.cfg
+module fb-drv
+module lvgl-demo
