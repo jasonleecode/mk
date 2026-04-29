@@ -282,5 +282,7 @@ roottask moe rom/lvgl-demo.cfg
 module l4re
 module ned
 module lvgl-demo.cfg
+module virt-full.io
+module io
 module fb-drv
 module lvgl-demo
