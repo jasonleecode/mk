@@ -59,6 +59,20 @@ default-kernel fiasco -serial_esc
 default-bootstrap bootstrap
 default-entry native-shell
 
+# ------------------------------------------------------------
+# Entry: imx6ul-native-shell - i.MX6UL 原生 Shell
+# ------------------------------------------------------------
+entry imx6ul-native-shell
+
+kernel fiasco -serial_esc
+module sigma0
+roottask moe rom/imx6ul-native-shell.cfg
+module l4re
+module ned
+module imx6ul-native-shell.cfg
+module native_shell
+module libreadline.so
+
 entry hello
 roottask moe --init=rom/hello
 module l4re

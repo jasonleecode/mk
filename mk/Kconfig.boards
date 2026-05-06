@@ -78,6 +78,17 @@ config BOARD_IMX6
 	  CPU: Cortex-A9
 	  FPU: VFPv3 + NEON
 
+config BOARD_IMX6UL
+	bool "i.MX6UL (Cortex-A7)"
+	depends on BUILD_ARCH_arm
+	select CPU_ARM_ARMV7A if BUILD_ARCH_arm
+	help
+	  NXP i.MX6UL (Ultra Lite) series (ARM Cortex-A7).
+	  QEMU: mcimx6ul-evk. UART1 @ 0x02020000.
+	  Architecture: ARMv7-A
+	  CPU: Cortex-A7
+	  FPU: VFPv4 + NEON
+
 config BOARD_ZYNQ
 	bool "Xilinx Zynq-7000 (Cortex-A9)"
 	depends on BUILD_ARCH_arm
@@ -100,6 +111,7 @@ config BOARD_TYPE
 	default "virt-arm"    if BOARD_VIRT_ARM
 	default "virt-arm64"  if BOARD_VIRT_ARM64
 	default "imx6"        if BOARD_IMX6
+	default "imx6ul"      if BOARD_IMX6UL
 	default "zynq"        if BOARD_ZYNQ
 
 # FPU configuration based on board type
@@ -111,6 +123,7 @@ config BOARD_HAS_FPU
 	default y if BOARD_VIRT_ARM
 	default y if BOARD_VIRT_ARM64
 	default y if BOARD_IMX6
+	default y if BOARD_IMX6UL
 	default y if BOARD_ZYNQ
 	default y if BOARD_GENERIC
 	help
