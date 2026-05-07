@@ -250,6 +250,7 @@ module fb-drv
 module lvgl-demo
 module native_shell
 module libreadline.so
+module hello
 
 entry uart-test
 roottask moe rom/uart-test.cfg
