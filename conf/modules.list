@@ -247,6 +247,7 @@ module rtc
 module virtio-block-driver
 module ext4fs
 module fb-drv
+module lvgl-demo
 module native_shell
 module libreadline.so
 
