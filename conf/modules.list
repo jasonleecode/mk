@@ -247,6 +247,7 @@ module rtc
 module virtio-block-driver
 module ext4fs
 module syslogd
+module spawnd
 module fb-drv
 module lvgl-demo
 module native_shell
