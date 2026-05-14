@@ -304,3 +304,12 @@ module virt-full.io
 module io
 module fb-drv
 module lvgl-demo
+
+entry cyclictest
+kernel fiasco -serial_esc
+module sigma0
+roottask moe rom/cyclictest.cfg
+module l4re
+module ned
+module cyclictest.cfg
+module cyclictest
