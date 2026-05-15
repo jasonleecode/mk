@@ -212,16 +212,13 @@ module[arch=arm64,fname=ramdisk.cpio.gz]  https://l4re.org/download/ramdisks/ram
 module[arch=amd64,fname=ramdisk.cpio.gz]  https://l4re.org/download/ramdisks/ramdisk-amd64.cpio.gz
 
 entry ipcbench
+kernel fiasco -serial_esc
+module sigma0
 roottask moe rom/ipcbench.cfg
 module l4re
 module ned
+module ipcbench.cfg
 module ipcbench
-module ipcbench_client
-module ipcbench_server
-module ipcbench_parallel
-module syscallbench
-module syscallbench_parallel
-module ned/ipcbench/ipcbench.cfg
 
 # TuringOS 自定义入口
 entry fiasco-base-test
@@ -253,6 +250,8 @@ module lvgl-demo
 module native_shell
 module libreadline.so
 module hello
+module cyclictest
+module ipcbench
 
 entry uart-test
 roottask moe rom/uart-test.cfg
