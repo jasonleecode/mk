@@ -252,6 +252,7 @@ module libreadline.so
 module hello
 module cyclictest
 module ipcbench
+module smp-spawn-bench
 
 entry uart-test
 roottask moe rom/uart-test.cfg
@@ -303,6 +304,16 @@ module virt-full.io
 module io
 module fb-drv
 module lvgl-demo
+
+entry smp-spawn-bench
+kernel fiasco -serial_esc
+module sigma0
+roottask moe rom/smp-spawn-bench.cfg
+module l4re
+module ned
+module smp-spawn-bench.cfg
+module spawnd
+module smp-spawn-bench
 
 entry cyclictest
 kernel fiasco -serial_esc
