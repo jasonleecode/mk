@@ -315,6 +315,16 @@ module smp-spawn-bench.cfg
 module spawnd
 module smp-spawn-bench
 
+entry smp-spawn-bench-ci
+kernel fiasco -serial_esc
+module sigma0
+roottask moe rom/smp-spawn-bench-ci.cfg
+module l4re
+module ned
+module smp-spawn-bench-ci.cfg
+module spawnd
+module smp-spawn-bench
+
 entry cyclictest
 kernel fiasco -serial_esc
 module sigma0
