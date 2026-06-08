@@ -253,6 +253,7 @@ module hello
 module cyclictest
 module ipcbench
 module smp-spawn-bench
+module exectest
 
 entry uart-test
 roottask moe rom/uart-test.cfg
