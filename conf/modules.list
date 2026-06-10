@@ -246,6 +246,7 @@ module ext4fs
 module syslogd
 module spawnd
 module ds18b20-server
+module tef6686hn-server
 module fb-drv
 module lvgl-demo
 module native_shell
