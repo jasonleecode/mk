@@ -245,6 +245,7 @@ module virtio-block-driver
 module ext4fs
 module syslogd
 module spawnd
+module devmgr
 module ds18b20-server
 module tef6686hn-server
 module fb-drv
