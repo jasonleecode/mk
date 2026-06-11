@@ -242,7 +242,10 @@ module virt-full.io
 module io
 module rtc
 module virtio-block-driver
+module netd
+module netcat
 module ext4fs
+module authd
 module syslogd
 module spawnd
 module devmgr
