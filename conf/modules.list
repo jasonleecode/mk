@@ -248,6 +248,8 @@ module ifconfig
 module dhcp
 module ping
 module nslookup
+module udpecho
+module tcpecho
 module ext4fs
 module authd
 module syslogd
