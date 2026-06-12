@@ -245,6 +245,9 @@ module virtio-block-driver
 module netd
 module netcat
 module ifconfig
+module dhcp
+module ping
+module nslookup
 module ext4fs
 module authd
 module syslogd
