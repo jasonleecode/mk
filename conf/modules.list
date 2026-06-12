@@ -250,6 +250,7 @@ module ping
 module nslookup
 module udpecho
 module tcpecho
+module mqtt
 module ext4fs
 module authd
 module syslogd
