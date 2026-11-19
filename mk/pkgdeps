@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use File::Temp qw(tempfile);
 
 my $do_cluster_subgraphs = 0;
 my $collapse_clusters = 0;
@@ -165,15 +166,21 @@ sub write_alias_pcfile($@)
   die "Path for pc-files not set, use '-P dir'"
     unless defined $pcfiledir_for_aliases;
 
-  open(my $u, ">$pcfiledir_for_aliases/$alias.pc")
-    || die "Cannot create '$pcfiledir_for_aliases/$alias.pc': $!";
+  my $path = "$pcfiledir_for_aliases/$alias.pc";
+  my $requires = join ' ', grep { not defined $build_only_deps{$_} } @_;
+  my $content = "Name: $alias\nVersion: 0\nDescription: Alias Dependency Package\nRequires: $requires\n";
 
-  print $u "Name: $alias\n".
-           "Version: 0\n".
-           "Description: Alias Dependency Package\n".
-           "Requires: ".join(' ', grep { not defined $build_only_deps{$_} } @_)."\n";
+  if (open my $old, '<', $path)
+    {
+      local $/;
+      return if (<$old> // '') eq $content;
+    }
 
-  close $u;
+  my ($out, $tmp) = tempfile('.alias-XXXXXXXX', DIR => $pcfiledir_for_aliases, UNLINK => 1);
+  print {$out} $content or die "Cannot write '$tmp': $!";
+  close $out or die "Cannot close '$tmp': $!";
+  chmod(0666 & ~umask, $tmp) or die "Cannot set permissions on '$tmp': $!";
+  rename $tmp, $path or die "Cannot install '$path': $!";
 }
 
 sub write_kconfig_file()

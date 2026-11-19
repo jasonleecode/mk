@@ -908,9 +908,13 @@ $(eval $(call BID_GENERATE_I_MAKE_RULE,%.i,%.cpp,$(CXX),$(CXXFLAGS) $(call BID_m
 $(eval $(call BID_GENERATE_I_MAKE_RULE,%.s.i,%.cpp,$(CXX),$(CXXFLAGS) $(PICFLAGS)))
 $(eval $(call BID_GENERATE_I_MAKE_RULE,%.i,%.S,$(CC),$(ASFLAGS)))
 
+# Assembly listings are developer-requested outputs. Installing these implicit
+# rules during a normal build can overwrite a checked-in .S next to a .c.
+ifneq ($(filter %.S,$(MAKECMDGOALS)),)
 $(eval $(call BID_GENERATE_S_MAKE_RULE,%.c,$(CC),$(CFLAGS)))
 $(eval $(call BID_GENERATE_S_MAKE_RULE,%.cc,$(CC),$(CXXFLAGS)))
 $(eval $(call BID_GENERATE_S_MAKE_RULE,%.cpp,$(CC),$(CXXFLAGS)))
+endif
 
 %.c:	%.y
 	@$(GEN_MESSAGE)

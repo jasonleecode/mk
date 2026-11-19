@@ -142,7 +142,8 @@ $(OBJ_DIR)/.Package.deps: $(L4DIR)/mk/pkgdeps $(OBJ_DIR)/.Package.deps.pkgs \
                           $(PKGCONF_DIR) Makefile \
                           $(wildcard $(OBJ_BASE)/.kconfig)
 	$(VERBOSE)$(PKGDEPS_CMD) generate $(SRC_DIR) $(ALL_SUBDIRS) > $@.tmp
-	$(VERBOSE)$(call move_if_changed,$@,$@.tmp)
+	@# Record when the pc directory was checked, including repaired aliases.
+	$(VERBOSE)mv -f $@.tmp $@
 
 $(foreach v,$(VARIANTS_AVAILABLE),$(eval $(call variant_package_deps_rule,$(v))))
 

@@ -41,7 +41,7 @@ check_linker = %(linker:;:%:error(linker variable not defined))
 # options to pass to the linker (binutils GNU ld and LLVM ld)
 link_pass_opts = %:set-var(link_pass_opts
   %{M} %{-print-map} %{-trace-symbol*} %{y} %{-verbose}
-  %{-cref} %{-trace} %{r} %{O*}
+  %{-cref} %{-trace} %{-dependency-file*} %{r} %{O*}
   %{m} %{-error-*} %{-warn-*&-no-warn-*}
   %{-sort-*} %{-unique*}
   %{-define-common&-no-define-common} %{B*}

@@ -57,22 +57,6 @@ modaddr 0x01100000
 
 default-kernel fiasco -serial_esc
 default-bootstrap bootstrap
-default-entry native-shell
-
-# ------------------------------------------------------------
-# Entry: imx6ul-native-shell - i.MX6UL 原生 Shell
-# ------------------------------------------------------------
-entry imx6ul-native-shell
-
-kernel fiasco -serial_esc
-module sigma0
-roottask moe rom/imx6ul-native-shell.cfg
-module l4re
-module ned
-module imx6ul-native-shell.cfg
-module authd
-module native_shell
-module libreadline.so
 
 entry hello
 roottask moe --init=rom/hello
@@ -213,139 +197,13 @@ module[arch=arm64,fname=ramdisk.cpio.gz]  https://l4re.org/download/ramdisks/ram
 module[arch=amd64,fname=ramdisk.cpio.gz]  https://l4re.org/download/ramdisks/ramdisk-amd64.cpio.gz
 
 entry ipcbench
-kernel fiasco -serial_esc
-module sigma0
 roottask moe rom/ipcbench.cfg
 module l4re
 module ned
-module ipcbench.cfg
 module ipcbench
-
-# TuringOS 自定义入口
-entry fiasco-base-test
-roottask moe --init=rom/hello
-module l4re
-module hello
-
-entry demo
-roottask moe rom/demo.cfg
-module l4re
-module[fname=ned] lua
-module demo.cfg
-module hello
-
-entry native-shell
-roottask moe rom/native-shell.cfg
-module l4re
-module ned
-module native-shell.cfg
-module virt-full.io
-module io
-module rtc
-module virtio-block-driver
-module netd
-module netcat
-module ifconfig
-module dhcp
-module ping
-module nslookup
-module udpecho
-module tcpecho
-module mqtt
-module telnetd
-module ext4fs
-module authd
-module syslogd
-module spawnd
-module devmgr
-module ds18b20-server
-module tef6686hn-server
-module fb-drv
-module lvgl-demo
-module native_shell
-module libreadline.so
-module hello
-module cyclictest
-module ipcbench
-module smp-spawn-bench
-module exectest
-
-entry uart-test
-roottask moe rom/uart-test.cfg
-module l4re
-module ned
-module uart-test.cfg
-module virt-serial.io
-module io
-module virtio-serial
-module uart-test
-
-entry fb-test
-roottask moe rom/fb-test.cfg
-module l4re
-module ned
-module fb-test.cfg
-module fb-test
-
-entry fb-drv
-roottask moe rom/fb-drv.cfg
-module l4re
-module ned
-module fb-drv.cfg
-module fb-drv
-module fb-test
-
-
-entry wamr
-roottask moe rom/wamr.cfg
-module l4re
-module ned
-module wamr.cfg
-module wamr-example
-
-entry smp-test
-roottask moe rom/smp-test.cfg
-module l4re
-module ned
-module smp-test.cfg
-module smp-test
-
-
-entry lvgl-demo
-roottask moe rom/lvgl-demo.cfg
-module l4re
-module ned
-module lvgl-demo.cfg
-module virt-full.io
-module io
-module fb-drv
-module lvgl-demo
-
-entry smp-spawn-bench
-kernel fiasco -serial_esc
-module sigma0
-roottask moe rom/smp-spawn-bench.cfg
-module l4re
-module ned
-module smp-spawn-bench.cfg
-module spawnd
-module smp-spawn-bench
-
-entry smp-spawn-bench-ci
-kernel fiasco -serial_esc
-module sigma0
-roottask moe rom/smp-spawn-bench-ci.cfg
-module l4re
-module ned
-module smp-spawn-bench-ci.cfg
-module spawnd
-module smp-spawn-bench
-
-entry cyclictest
-kernel fiasco -serial_esc
-module sigma0
-roottask moe rom/cyclictest.cfg
-module l4re
-module ned
-module cyclictest.cfg
-module cyclictest
+module ipcbench_client
+module ipcbench_server
+module ipcbench_parallel
+module syscallbench
+module syscallbench_parallel
+module ned/ipcbench/ipcbench.cfg
