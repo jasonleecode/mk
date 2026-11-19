@@ -70,6 +70,7 @@ roottask moe rom/imx6ul-native-shell.cfg
 module l4re
 module ned
 module imx6ul-native-shell.cfg
+module authd
 module native_shell
 module libreadline.so
 
@@ -251,6 +252,7 @@ module nslookup
 module udpecho
 module tcpecho
 module mqtt
+module telnetd
 module ext4fs
 module authd
 module syslogd
